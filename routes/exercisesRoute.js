@@ -10,7 +10,7 @@ const mongo = require("../shared/mongo")
 const excercisesService = require("../services/exercisesService")
 
 exercisesRouter.get("/",async(req,res) => {
-    const posts = await excercisesService.getExcercises()
+    const posts = await excercisesService.getExercises()
     res.send(posts);
 })
 
