@@ -20,7 +20,7 @@ exercisesRouter.get("/:id",async(req,res) => {
 })
 
 exercisesRouter.post("/",async(req,res) => {
-    const post = await excercisesService.addExercise(req.body);
+    const post = await excercisesService.addExercises(req.body);
     res.send(post)
 })
 
