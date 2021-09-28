@@ -14,7 +14,7 @@ const jwt = require("jsonwebtoken");
 //importing Routes
 const postRoute = require("./routes/exercisesRoute");
 const userRoute = require("./routes/usersRoute");
-const authRoute = require("./routes/authRoute");
+// const authRoute = require("./routes/authRoute");
 
 //importing mongo
 const mongo = require("./shared/mongo");
@@ -36,31 +36,31 @@ async function AppServer() {
 //     });
 
     //Routes
-    app.use("/auth", authRoute);
+//     app.use("/auth", authRoute);
 
     //Checking token
-       app.use((req, res, next) => {
-      const header = req.headers["access-token"];
-      try {
-        if (typeof header !== "undefined") {
-          const bearer = header.split(" ");
-          const token = bearer[0];
-          console.log(bearer);
-          console.log("yes entered")
-          const userid = jwt.verify(token, process.env.TOKEN_SECRET);
-          console.log("verifoed")
-          console.log(userid);
-          return next();
-        }
-      } catch (error) {
-        console.log(error);
-        res.status(401).send("invalid token");
-      }
+//        app.use((req, res, next) => {
+//       const header = req.headers["access-token"];
+//       try {
+//         if (typeof header !== "undefined") {
+//           const bearer = header.split(" ");
+//           const token = bearer[0];
+//           console.log(bearer);
+//           console.log("yes entered")
+//           const userid = jwt.verify(token, process.env.TOKEN_SECRET);
+//           console.log("verifoed")
+//           console.log(userid);
+//           return next();
+//         }
+//       } catch (error) {
+//         console.log(error);
+//         res.status(401).send("invalid token");
+//       }
 
-      res.send("token is missing");
-    });
+//       res.send("token is missing");
+//     });
 
-    app.use("/posts", postRoute);
+    app.use("/exercises", postRoute);
     app.use("/users", userRoute);
 
     //Starting App
