@@ -11,9 +11,9 @@ const service = {
     return mongo.db.collection("exercises").findOne({ _id: ObjectId(id) });
   },
   addExercises(data) {
-    return mongo.db.collection("excercises").insert(data);
+    return mongo.db.collection("exercises").insert(data);
   },
-  updateExcercise(id, data) {
+  updateExercise(id, data) {
     return mongo.db
       .collection("exercises")
       .findOneAndUpdate(
