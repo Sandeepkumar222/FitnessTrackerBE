@@ -9,7 +9,7 @@ const serviceUser = {
   },
   getUser(userid) {
       console.log(userid)
-    return mongo.db.collection("users").findOne({"id" : parseInt(userid)});
+    return mongo.db.collection("users").findOne({ _id: ObjectId(userid)});
   },
   addUsers(data) {
     return mongo.db.collection("users").insert(data);
