@@ -1,6 +1,7 @@
 //importing express
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser'),
 
 //importing environmental configuration
 require("dotenv").config();
