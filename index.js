@@ -15,7 +15,7 @@ const jwt = require("jsonwebtoken");
 //importing Routes
 const postRoute = require("./routes/exercisesRoute");
 const userRoute = require("./routes/usersRoute");
-// const authRoute = require("./routes/authRoute");
+const authRoute = require("./routes/authRoute");
 
 //importing mongo
 const mongo = require("./shared/mongo");
