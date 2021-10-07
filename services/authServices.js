@@ -61,7 +61,7 @@ const service = {
         const salt = await bcrypt.genSalt(5);
         data.password = await bcrypt.hash(data.password, salt);
 
-        await mongo.db.collection("auth").insert(data);
+        await mongo.db.collection("users").insert(data);
 
 
 
@@ -74,7 +74,7 @@ const service = {
 
     findEmail(mail){
         console.log(mail)
-        return mongo.db.collection("auth").findOne({email : mail})
+        return mongo.db.collection("users").findOne({email : mail})
     }
 }
 
