@@ -44,8 +44,10 @@ async function AppServer() {
     //Checking token
        app.use((req, res, next) => {
       const header = req.headers["access-token"];
+         console.log(header)
       try {
         if (typeof header !== "undefined") {
+          console.log("123");
           const bearer = header.split(" ");
           const token = bearer[0];
           console.log(bearer);
