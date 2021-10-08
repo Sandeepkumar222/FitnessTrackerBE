@@ -49,7 +49,7 @@ async function AppServer() {
         if (typeof header !== "undefined") {
           console.log("123");
           const bearer = header.split(" ");
-          const token = bearer[0];
+          const token = bearer[1];
           console.log(bearer);
           console.log("yes entered")
           const userid = jwt.verify(token, process.env.TOKEN_SECRET);
