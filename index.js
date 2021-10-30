@@ -16,6 +16,7 @@ const jwt = require("jsonwebtoken");
 const postRoute = require("./routes/exercisesRoute");
 const userRoute = require("./routes/usersRoute");
 const authRoute = require("./routes/authRoute");
+const forgotPasswordRoute = require("./routes/forgotPasswordRoute")
 
 //importing mongo
 const mongo = require("./shared/mongo");
@@ -39,6 +40,7 @@ async function AppServer() {
 //     });
 
     //Routes
+    app.use("/forgotPassword", forgotPasswordRoute);
     app.use("/auth", authRoute);
 
     //Checking token
