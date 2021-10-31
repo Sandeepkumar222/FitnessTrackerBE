@@ -33,7 +33,7 @@ const service = {
       //check for email
       const user = await service.findEmail(data.email);
       if (!user)
-        return res.status(400).send({ error: "User email is incorrect" });
+        return res.status(400).send({ error: "User email is incorrect or not registered" });
 
     //Generating token and sending token as response
     const token = jwt.sign({userid : user._id,email : user.email}, process.env.TOKEN_SECRET, {expiresIn:"8h"});
