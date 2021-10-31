@@ -6,7 +6,13 @@ bodyParser = require('body-parser'),
 //importing environmental configuration
 require("dotenv").config();
 
+     //No access error 
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 //cors
 const cors = require("cors");
 
@@ -32,13 +38,6 @@ async function AppServer() {
     //connecting to mongo
     await mongo.connect();
 
-     //No access error 
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
      
     //cors
    app.options('*', cors());
