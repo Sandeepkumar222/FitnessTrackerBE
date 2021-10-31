@@ -12,7 +12,12 @@ const login = Joi.object({
     password : Joi.string().min(5).required()
 })
 
+const emailSending = Joi.object({
+    email : Joi.string().required().email(),
+})
+
 module.exports = {
     register,
-    login
+    login,
+    emailSending
 }
