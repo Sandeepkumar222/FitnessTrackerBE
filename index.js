@@ -33,17 +33,18 @@ async function AppServer() {
     //connecting to mongo
     await mongo.connect();
 
-    //cors
-    app.use(cors(corsOptions));
-     
-     
-//No access error 
+     //No access error 
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+     
+    //cors
+    app.use(cors(corsOptions));
+     
+     
 
 
     //Middelwares
