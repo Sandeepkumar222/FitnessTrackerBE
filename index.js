@@ -6,6 +6,7 @@ bodyParser = require('body-parser'),
 //importing environmental configuration
 require("dotenv").config();
 
+
 //cors
 const cors = require("cors");
 
@@ -34,6 +35,16 @@ async function AppServer() {
 
     //cors
     app.use(cors(corsOptions));
+     
+     
+//No access error 
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
     //Middelwares
     app.use(bodyParser.json({ limit: '50mb' }))
