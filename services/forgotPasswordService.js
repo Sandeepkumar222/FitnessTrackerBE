@@ -2,6 +2,7 @@ const express = require("express");
 
 const mongo = require("../shared/mongo");
 
+ const nodemailer = require("nodemailer");
 // importing jwt to genetrate token
 const jwt = require("jsonwebtoken");
 
@@ -38,7 +39,7 @@ const service = {
     const token = jwt.sign({userid : user._id,email : user.email}, process.env.TOKEN_SECRET, {expiresIn:"8h"});
         emailSending(token);
       
-      const nodemailer = require("nodemailer");
+     
 
       // async..await is not allowed in global scope, must use a wrapper
       async function emailSending(token) {
