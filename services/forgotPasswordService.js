@@ -27,7 +27,7 @@ const options = {
 
 const service = {
   async emailCheck(req, res) {
-    const data = req.body;
+    const data = req;
     console.log(data);
     try {
       //initializig the schema
