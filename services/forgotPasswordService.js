@@ -31,9 +31,9 @@ const service = {
     console.log(data);
     try {
       //initializig the schema
-      const { error } = schema.emailSending.validate(data, options);
-      if (error)
-        return res.status(400).send({ error: error.details[0].message });
+//       const { error } = schema.emailSending.validate(data, options);
+//       if (error)
+//         return res.status(400).send({ error: error.details[0].message });
 
       //check for email
       const user = await service.findEmail(data.email);
