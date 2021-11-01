@@ -15,6 +15,7 @@ router.post("/emailSending", forgotPasswordService.emailCheck);
 router.put("/:id",async(req,res) => {
     console.log(req.params.id,req.body)
     const post = await forgotPasswordService.updatePassword(req.params.id,req.body) ;
+    res.send("Changed the password");
 })
 
 // router.post("/login", authService.login);
