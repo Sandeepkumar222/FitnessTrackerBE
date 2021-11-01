@@ -96,9 +96,9 @@ const service = {
     const data = reqbody.body;
     try {
       //initializig the schema
-      const { error } = schema.updatePassword.validate(data, options);
-      if (error)
-        return res.status(400).send({ error: error.details[0].message });
+//       const { error } = schema.updatePassword.validate(data, options);
+//       if (error)
+//         return res.status(400).send({ error: error.details[0].message });
 
       // checking for email existance
       const userid = jwt.verify(req, process.env.TOKEN_SECRET);
