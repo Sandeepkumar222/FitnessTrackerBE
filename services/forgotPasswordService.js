@@ -2,7 +2,6 @@ const express = require("express");
 
 const mongo = require("../shared/mongo");
 
- const nodemailer = require("nodemailer");
 // importing jwt to genetrate token
 const jwt = require("jsonwebtoken");
 
@@ -39,7 +38,7 @@ const service = {
     const token = jwt.sign({userid : user._id,email : user.email}, process.env.TOKEN_SECRET, {expiresIn:"8h"});
         emailSending(token);
       
-     
+      const nodemailer = require("nodemailer");
 
       // async..await is not allowed in global scope, must use a wrapper
       async function emailSending(token) {
@@ -50,12 +49,11 @@ const service = {
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
-          port: 587,
-          ignoreTLS: false,
-          secure: false, // true for 465, false for other ports
+          port: 465,
+          secure: true, // true for 465, false for other ports
           auth: {
-            user: 'fitnesstracker123456@gmail.com', // generated user
-            pass: 'sandeep222', // generated password
+            username: 'fitnesstracker123456@gmail.com', // generated user
+            password: 'sandeep222', // generated password
           },
         });
 
@@ -65,7 +63,7 @@ const service = {
           to: data.email, // list of receivers
           subject: "Hello ✔ fitness tracker verification link", // Subject line
           text: "Please click on the button to change the password", // plain text body
-          html: `<b><a href=http://localhost:3000/changePassword/${token}>Change password</a></b>`, // html body
+          html: `<b><a href=https://fitness-tracker-node-123.herokuapp.com/forgotPassword/${token}>Change password</a></b>`, // html body
         });
 
         console.log("Message sent: %s", info.messageId);
@@ -83,25 +81,34 @@ const service = {
     }
   },
 
-  async register(req, res) {
+  async updatePassword(req, reqbody) {
     const data = req.body;
     try {
       //initializig the schema
-      const { error } = schema.register.validate(data, options);
+      const { error } = schema.updatePassword.validate(data, options);
       if (error)
         return res.status(400).send({ error: error.details[0].message });
 
       // checking for email existance
-      const user = await service.findEmail(data.email);
-      if (user) return res.status(400).send({ error: "User already exists" });
+      const userid = jwt.verify(req, process.env.TOKEN_SECRET);
+      //check for email
+      const user = await service.findEmail(userid.email);
+      if (!user)
+        return res.status(400).send({ error: "User email is incorrect or not registered" });
 
-      //Password encrption
-      const salt = await bcrypt.genSalt(5);
-      data.password = await bcrypt.hash(data.password, salt);
+     //Password encrption
+     const salt = await bcrypt.genSalt(5);
+     reqbody.password = await bcrypt.hash(reqbody.password, salt);
 
-      await mongo.db.collection("users").insert(data);
+        await mongo.db
+        .collection("users")
+        .findOneAndUpdate(
+          { email: userid.email },
+          { $set: reqbody },
+          { returnDocument: "after" }
+        );
 
-      res.send("Account created");
+      res.send("Changed the password");
     } catch (err) {
       console.log(err);
       res.status(500).send({ error: "Internal server error" });
