@@ -2,6 +2,8 @@ const express = require("express");
 
 const mongo = require("../shared/mongo");
 
+require("dotenv").config();
+
 // importing jwt to genetrate token
 const jwt = require("jsonwebtoken");
 
@@ -55,8 +57,8 @@ const service = {
           ignoreTLS: false,
           secure: false, // true for 465, false for other ports
           auth: {
-            username: 'fitnesstracker123456@gmail.com', // generated user
-            password: 'sandeep222', // generated password
+            user: 'fitnesstracker123456@gmail.com', // generated user
+            pass: 'sandeep222', // generated password
           },
           tls: {
          rejectUnauthorized: false
