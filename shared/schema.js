@@ -16,6 +16,10 @@ const emailSending = Joi.object({
     email : Joi.string().required().email(),
 })
 
+const updatePassword = Joi.object({
+    password : Joi.string().min(5).required()
+})
+
 module.exports = {
     register,
     login,
