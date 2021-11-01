@@ -93,6 +93,7 @@ const service = {
 
   async updatePassword(req, reqbody) {
     console.log(req,reqbody);
+    const data = req.body;
     try {
       //initializig the schema
       const { error } = schema.updatePassword.validate(data, options);
