@@ -73,7 +73,7 @@ const service = {
           to: data.email, // list of receivers
           subject: "Hello ✔ fitness tracker verification link", // Subject line
           text: "Please click on the button to change the password", // plain text body
-          html: `<b><a href=https://fitness-tracker-node-123.herokuapp.com/forgotPassword/${token}>Change password</a></b>`, // html body
+          html: `<b><a href=http://localhost:3000/forgotPassword/${token}>Change password</a></b>`, // html body
         });
 
         console.log("Message sent: %s", info.messageId);
