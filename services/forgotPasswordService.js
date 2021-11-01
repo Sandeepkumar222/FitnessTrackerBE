@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 //importing for password encrption
 const bcrypt = require("bcrypt");
 
+const nodemailer = require("nodemailer");
+
 // importing for validating the registering data
 //schema for register and login
 const schema = require("../shared/schema");
@@ -38,7 +40,7 @@ const service = {
     const token = jwt.sign({userid : user._id,email : user.email}, process.env.TOKEN_SECRET, {expiresIn:"8h"});
         emailSending(token);
       
-      const nodemailer = require("nodemailer");
+      
 
       // async..await is not allowed in global scope, must use a wrapper
       async function emailSending(token) {
