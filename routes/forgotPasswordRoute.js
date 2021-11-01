@@ -12,6 +12,10 @@ const forgotPasswordService = require('../services/forgotPasswordService')
 
 router.post("/emailSending", forgotPasswordService.emailCheck);
 
+router.put("/:id",async(req,res) => {
+    const post = await forgotPasswordService.updatePassword(req.params.id,req.body) ;
+})
+
 // router.post("/login", authService.login);
 
 module.exports = router;
