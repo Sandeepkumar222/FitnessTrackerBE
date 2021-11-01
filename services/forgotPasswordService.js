@@ -119,7 +119,7 @@ const service = {
           { returnDocument: "after" }
         );
 
-      res.send("Changed the password");
+      
     } catch (err) {
       console.log(err);
       res.status(500).send({ error: "Internal server error" });
