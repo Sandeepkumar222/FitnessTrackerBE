@@ -12,6 +12,8 @@ const bcrypt = require("bcrypt");
 
 const nodemailer = require("nodemailer");
 
+const smtpTransport = require('nodemailer-smtp-transport');
+
 // importing for validating the registering data
 //schema for register and login
 const schema = require("../shared/schema");
@@ -51,7 +53,7 @@ const service = {
         // let testAccount = await nodemailer.createTestAccount();
 
         // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport(smtpTransport({
           host: 'smtp.gmail.com',
           port: 587,
           ignoreTLS: false,
@@ -63,7 +65,7 @@ const service = {
           tls: {
          rejectUnauthorized: false
      }
-        });
+        }));
 
         // send mail with defined transport object
         let info = await transporter.sendMail({
