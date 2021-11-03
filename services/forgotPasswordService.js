@@ -95,7 +95,7 @@ const service = {
     }
   },
 
-  async updatePassword(req, reqbody) {
+  async updatePassword(req, reqbody, res) {
     console.log(req,reqbody);
     const data = reqbody.body;
     try {
