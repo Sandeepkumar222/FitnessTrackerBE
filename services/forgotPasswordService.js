@@ -78,14 +78,16 @@ const service = {
 
         console.log("Message sent: %s", info.messageId);
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
+        
         // Preview only available when sending through an Ethereal account
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        
+        res.send("Mail sent");
       }
 
       emailSending().catch(console.error);
-       res.send("Mail sent");
+       
     } catch (err) {
       console.log(err);
       res.status(500).send({ error: "Internal server error" });
@@ -119,7 +121,7 @@ const service = {
           { $set: reqbody },
           { returnDocument: "after" }
         );
-
+      res.send("Changed the password");
       
     } catch (err) {
       console.log(err);
