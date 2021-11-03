@@ -86,7 +86,7 @@ const service = {
         res.send("Mail sent");
       }
 
-      emailSending(token,data).catch((error)=>{ res.status(500).send({error : "internal server error"})});
+      
     
        
     } catch (err) {
