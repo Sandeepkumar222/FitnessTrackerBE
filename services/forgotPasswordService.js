@@ -42,12 +42,12 @@ const service = {
 
     //Generating token and sending token as response
     const token = jwt.sign({userid : user._id,email : user.email}, process.env.TOKEN_SECRET, {expiresIn:"8h"});
-        emailSending(token,data);
+        emailSending();
       
       
 
       // async..await is not allowed in global scope, must use a wrapper
-      async function emailSending(token) {
+      async function emailSending() {
         // Generate test SMTP service account from ethereal.email
         // Only needed if you don't have a real mail account for testing
         // let testAccount = await nodemailer.createTestAccount();
@@ -87,7 +87,7 @@ const service = {
       }
 
       
-    
+    emailSending().catch(()=>{ res.status(500).send({error : "internal server error"})});
        
     } catch (err) {
       console.log(err);
